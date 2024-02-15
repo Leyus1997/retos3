@@ -4,7 +4,7 @@ mostrarImagen=function(idComponente,rutaImagen){
     componente=document.getElementById(idComponente);
     componente.src =  rutaImagen;
 }
-mostrarTexto=function(idComponente,mensaje){
+mostrarTexto = function(idComponente,mensaje){
     let componente;
     componente=document.getElementById(idComponente);
     componente.innerText = mensaje;
