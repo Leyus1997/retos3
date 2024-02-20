@@ -91,15 +91,23 @@ tbody tr:nth-child(odd) {
   }
   
   table {
-    background-color: #0b0c0c;
+    
     width: 100%;
+    text-align: left;
+    position: relative;
+    border-collapse: collapse; 
+    background-color: #f6f6f6;
   }
   td{
     text-align: center;
   }
   .areaTabla{
     margin-top: 20px;
+
   }
+  tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 .estiloBoton:hover {
     background-color:white; 
     color: #217023;
