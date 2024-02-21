@@ -75,6 +75,7 @@ agregarEmpleado=function(empleado){
     if (resultado==null) { //si es null este 
         empleados.push(empleado);//agrega un objeto al arreglo
         alert ("EMPLEADO GUARDADO CORRECTAMENTE");
+
         return true;
     } else {
         alert ("YA EXISTE UN EMPLEADO CON CEDULA"+empleado.cedula);
@@ -88,7 +89,7 @@ guardar=function(){
     let valorSueldo=recuperarFloat("txtSueldo");
     
     let datosEmpleado ={};
-    
+    let desahibilitarGuardar;    
 
     if (validarCedula(valorCedula) & validarNombre(valorNombre) & 
     validarApellido(valorApellido) & validarSueldo(valorSueldo)) {
@@ -97,8 +98,11 @@ guardar=function(){
         datosEmpleado.apellido=valorApellido;
         datosEmpleado.sueldo=valorSueldo;
         
-        agregarEmpleado(datosEmpleado);
+        desahibilitarGuardar=agregarEmpleado(datosEmpleado);
         mostrarempleados();
+        if (desahibilitarGuardar) {
+            deshabilitarComponente("btnGuardar");
+        }
     }
      
 }
