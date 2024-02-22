@@ -3,7 +3,8 @@ let empleados = [
     {cedula:"0914632123",nombre:"Luisa",apellido:"Gonzalez",sueldo:900.0},
     {cedula:"1722759782",nombre:"Jostin",apellido:"Quintana",sueldo:800.0}
 ]
-let esNuevo = false; 
+let esNuevo; 
+esNuevo = false; 
 mostrarOpcionEmpleado=function(){
     mostrarComponente("divEmpleado");
     ocultarComponente("divRol");
@@ -53,7 +54,8 @@ ejecutarNuevo=function(){
     habilitarComponente("txtApellido");
     habilitarComponente("txtSueldo");
     habilitarComponente("btnGuardar");
-    let esNuevo = true
+    esNuevo = true;
+   
 
 }
 buscarEmpleado=function(cedula){
@@ -89,10 +91,11 @@ guardar=function(){
     let valorSueldo=recuperarFloat("txtSueldo");
     
     let datosEmpleado ={};
-    let desahibilitarGuardar;    
+    let desahibilitarGuardar;  
+    let empleado;  
 
     if (validarCedula(valorCedula) & validarNombre(valorNombre) & 
-    validarApellido(valorApellido) & validarSueldo(valorSueldo)) {
+    validarApellido(valorApellido) & validarSueldo(valorSueldo) & esNuevo) {
         datosEmpleado.cedula=valorCedula;
         datosEmpleado.nombre=valorNombre;
         datosEmpleado.apellido=valorApellido;
@@ -102,13 +105,24 @@ guardar=function(){
         mostrarempleados();
         if (desahibilitarGuardar) {
             deshabilitarComponente("btnGuardar");
+            esNuevo = false;  
+        }else{
+            empleado=buscarEmpleado(valorCedula);
+            let valorNombre=mostrarTextoEnCaja("txtNombre",empleado.nombre);
+            let valorApellido=mostrarTextoEnCaja("txtApellido",empleado.apellido);
+            let valorSueldo=mostrarTextoEnCaja("txtSueldo",empleado.sueldo);
+            alert ("EMPLEADO MODIFICADO EXITOSAMENTE");
+            mostrarempleados();        // pendiente 
+            deshabilitarComponente("txtNombre");
+            deshabilitarComponente("txtApellido");
+            deshabilitarComponente("txtSueldo");
+            deshabilitarComponente("txtCedula");
         }
-    }
      
 }
-
+}
 //Validaciones por separado en funciones
-validarCedula=function(cedula){
+validarCedula = function(cedula){
     let logitudCedula=cedula.length;
     if (logitudCedula == 10 && esDigito(cedula)) {
         mostrarTexto("lblErrorCedula","")
@@ -148,5 +162,23 @@ validarSueldo=function(sueldo){
     }
     else {
         mostrarTexto("lblErrorSueldo","Ingresar un valor entre 400 y 5000")
+    }
+}
+ejecutarBusqueda = function(){
+    let valorCedula;
+    let empleado;
+    valorCedula=recuperarTexto("txtBusquedaCedula");
+    empleado=buscarEmpleado(valorCedula);
+    if (empleado==null) {
+        alert("EMPLEADO NO EXISTE");
+    }else{
+        let valorNombre=mostrarTextoEnCaja("txtNombre",empleado.nombre);
+        let valorApellido=mostrarTextoEnCaja("txtApellido",empleado.apellido);
+        let valorSueldo=mostrarTextoEnCaja("txtSueldo",empleado.sueldo);
+        habilitarComponente("txtNombre");
+        habilitarComponente("txtApellido");
+        habilitarComponente("txtSueldo");
+        deshabilitarComponente("txtCedula");
+        
     }
 }
