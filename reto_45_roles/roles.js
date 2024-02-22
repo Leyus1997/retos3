@@ -219,8 +219,8 @@ let calculoAporte = empleadoSueldo*(9.45/100);
 return calculoAporte.toFixed(2); // retorna el valor del aporte en este caso es el 9.45%
 }
 calcularValorAPagar=function(empleadoSueldo,aporteIESS,descuento){
-let valorAPagarTotal=empleadoSueldo-(aporteIESS+descuento);
-return valorAPagarTotal.toFixed(2); //retorna el valor que se le paga al empleado
+    let valorAPagarTotal = empleadoSueldo - (aporteIESS + descuento);
+    return valorAPagarTotal.toFixed(2); //retorna el valor que se le paga al empleado
 }
 calcularRol = function(){
  
@@ -232,18 +232,21 @@ calcularRol = function(){
     validarDescuento = validacionDescuentos(descuento,sueldo);
     if(validarDescuento){
     let aporteEmpleado = calcularAporteEmpleado(sueldo);
+    let aporteEmpleadoFloat = parseFloat(aporteEmpleado);// aporte IESS de string a flotante
     mostrarTexto("infoIESS",aporteEmpleado);
 
-    let pagarTotalEmpleado = calcularValorAPagar(sueldo,aporteEmpleado,descuento);
+    let pagarTotalEmpleado = calcularValorAPagar(sueldo,aporteEmpleadoFloat,descuento);
     mostrarTexto("infoPago",pagarTotalEmpleado);
     }else{
-        
+       
     }
 }
 validacionDescuentos = function(descuento,sueldo){
-    if (descuento>=0 && descuento<=sueldo) {
+    if (isNaN && descuento>=0 && descuento <= sueldo) {
+        mostrarTexto("lblErrorDescuentos","")
         return true;
     } else {
+        mostrarTexto("lblErrorDescuentos","AGREGAR EL DESCUENTO VALOR ENTRE 0 Y NO MAYOR AL SUELDO");
         return false;
     }
 }
