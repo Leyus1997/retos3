@@ -172,6 +172,8 @@ ejecutarBusqueda = function(){
     if (empleado==null) {
         alert("EMPLEADO NO EXISTE");
     }else{
+        
+        let valorCedula=mostrarTextoEnCaja("txtCedula",empleado.cedula);
         let valorNombre=mostrarTextoEnCaja("txtNombre",empleado.nombre);
         let valorApellido=mostrarTextoEnCaja("txtApellido",empleado.apellido);
         let valorSueldo=mostrarTextoEnCaja("txtSueldo",empleado.sueldo);
