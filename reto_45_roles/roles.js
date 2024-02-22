@@ -196,3 +196,20 @@ limpiar = function(){
     deshabilitarComponente("txtSutxtApellidoeldo");
     deshabilitarComponente("txtSueldo");
 }
+buscarPorRol = function(){
+    let valorCedula;
+    let empleado;
+    valorCedula=recuperarTexto("txtBusquedaCedulaRol");
+    empleado=buscarEmpleado(valorCedula);
+    if (empleado==null) {
+        alert("EMPLEADO NO EXISTE");
+        mostrarTexto("infoCedula","");
+        mostrarTexto("infoNombre","");
+        mostrarTexto("infoSueldo","");
+    }else{
+        mostrarTexto("infoCedula",empleado.sueldo);
+        mostrarTexto("infoNombre",empleado.nombre+" "+empleado.apellido);
+        mostrarTexto("infoSueldo",empleado.sueldo);
+    }
+
+}
