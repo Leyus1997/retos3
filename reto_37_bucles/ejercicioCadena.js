@@ -41,6 +41,32 @@ let resultado = "";
         mostrarTexto("lblResultado",resultado);
     }
 }
-
-
-
+buscarLetra = function(cadena,letra){
+    let letraIterada;
+    let existeLetra=false;
+    for(let i=0;i<cadena.length;ii++){
+        letraIterada=cadena.charAt(i);
+        if (letraIterada==letra) {
+            existeLetra=true;
+                            //si colocamos i podemos ver en que psosicion se en contro la letra
+        }
+    }
+    if (existeLetra==true) {
+        console.log("existe");
+        return=true;
+    } else {
+        console.log("no existe");
+        return =false;
+    }   
+}
+contarMayusculas=function(cadena){
+    let letra;
+    let contadorMayusculas=0;
+    for (let i = 0; i < cadena.length; i++) {
+      letra=cadena.charAt(i);
+      if (esMayuscula(letra)) {
+        contadorMayusculas=contadorMayusculas+1;  //contadorMayusculas++
+      }        
+    }
+    console.log(contadorMayusculas);
+}
